@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/firstClass.css">
+    <script src="../js/firstClass.js" defer></script>
+    <title>Main</title>
+</head>
+<body>
+    <nav id="utils-nav">
+        <ul>
+            <li>
+                <p>Class exercises</p>
+                <ul>
+                    <li><a href="firstClass.html">#1</a></li>
+                </ul>
+            </li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+        </ul>
+    </nav>
+    <div class="box-antiquewhite">
+        <h3 class="text-center">Set of tennis</h3>
+        <form id="tenisFormulario">
+            <div class="form-group">
+                <label for="opernado1">Player 1: </label>
+                <input type="number" class="form-control" id="player1" required>
+            </div>
+            <div class="form-group">
+                <label for="opernado2">Player 2: </label>
+                <input type="number" class="form-control" id="player2" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="tennisGame()" >Calculate</button>
+        </form>
+        <div id="result" class="mt-3">Result: ?</div>
+    </div>
+</body>
+</html>

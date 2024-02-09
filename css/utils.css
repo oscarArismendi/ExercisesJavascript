@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    
+}
+/*--------- nav bar---------*/
+
+#utils-nav{
+    display: flex;
+    justify-content: space-around;
+    background-color: grey;
+    /* padding: 1vh; */
+}
+
+#utils-nav li:hover ul li:hover{
+    background-color: rgb(100, 100, 100);
+}
+
+#utils-nav li ul{
+    display: none;
+    position: absolute;
+}
+
+#utils-nav li:hover ul{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#utils-nav li:hover ul li{
+    background: grey;
+    width: calc(100vw*0.5);
+}
+
+.box-antiquewhite{
+    max-width: 400px;
+    margin: auto;
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+ }
