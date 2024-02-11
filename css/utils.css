@@ -11,11 +11,10 @@ a{
 }
 /*--------- nav bar---------*/
 
-#utils-nav{
+#utils-nav ul{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: grey;
-    /* padding: 1vh; */
 }
 
 #utils-nav li:hover ul li:hover{
@@ -35,7 +34,8 @@ a{
 
 #utils-nav li:hover ul li{
     background: grey;
-    width: calc(100vw*0.5);
+    /* width: calc(100vw*0.5); */
+    width:100px;
 }
 
 .box-antiquewhite{

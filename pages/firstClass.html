@@ -11,29 +11,45 @@
     <nav id="utils-nav">
         <ul>
             <li>
+                <a href="../index.html">Home</a>
+            </li>
+            <li>
                 <p>Class exercises</p>
                 <ul>
                     <li><a href="firstClass.html">#1</a></li>
                 </ul>
             </li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
         </ul>
     </nav>
     <div class="box-antiquewhite">
         <h3 class="text-center">Set of tennis</h3>
         <form id="tenisFormulario">
             <div class="form-group">
-                <label for="opernado1">Player 1: </label>
+                <label for="player1">Player 1: </label>
                 <input type="number" class="form-control" id="player1" required>
             </div>
             <div class="form-group">
-                <label for="opernado2">Player 2: </label>
+                <label for="player2">Player 2: </label>
                 <input type="number" class="form-control" id="player2" required>
             </div>
             <button type="button" class="btn btn-primary" onclick="tennisGame()" >Calculate</button>
         </form>
         <div id="result" class="mt-3">Result: ?</div>
+    </div>
+    <div class="box-antiquewhite">
+        <h3 class="text-center">Longest word</h3>
+        <form id="form-longest-word">
+            <div class="form-group">
+                <label for="word1">Word 1: </label>
+                <input type="string" class="form-control" id="word1" required>
+            </div>
+            <div class="form-group">
+                <label for="word2">Word 2: </label>
+                <input type="string" class="form-control" id="word2" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="longestWord()" >Calculate</button>
+        </form>
+        <div id="result-longest-word" class="mt-3">Result: ?</div>
     </div>
 </body>
 </html>
