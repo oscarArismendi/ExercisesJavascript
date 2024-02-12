@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/opeConEst.css">
+    <script src="../js/opeConEst.js" defer></script>
+    <title>Main</title>
+</head>
+<body>
+    <nav id="utils-nav">
+        <ul>
+            <li>
+                <a href="../index.html">Home</a>
+            </li>
+            <li>
+                <p>Class exercises</p>
+                <ul>
+                    <li><a href="firstClass.html">#1</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="opeConEst.html">Operation,Conditional and Repetitive structures</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="box-antiquewhite">
+        <h3 class="text-center">Generator of verify number</h3>
+        <form id="tenisFormulario">
+            <div class="form-group">
+                <label for="user-number">Input the number</label>
+                <input type="number" class="form-control" id="user-number" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="numberVerify()" >Generate</button>
+        </form>
+        <div id="result-verify" class="mt-3">Result: ?</div>
+    </div>
+    <div id="box-list" class="box-antiquewhite">
+        <h3 class="text-center">List verify numbers</h3>
+        <form id="tenisFormulario">
+            <button type="button" class="btn btn-primary" onclick="showVerifyNumbers()" >Generate</button>
+        </form>
+        <div id="result-list" class="mt-3">Result: ?</div>
+    </div>
+</body>
+</html>
