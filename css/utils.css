@@ -40,8 +40,8 @@ a{
 
 #utils-nav li:hover ul li{
     background: grey;
-    /* width: calc(100vw*0.5); */
-    width:100px;
+    /* width: calc(100vw*0.25); */
+    width:200px;
 }
 
 .box-antiquewhite{
