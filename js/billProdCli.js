@@ -129,121 +129,130 @@ const bills = [
 
 // method 2 with promises
 
-function getClient(id){
+// function getClient(id){
 
-    return new Promise ((resolve,reject) =>{
-        let user ="";
-        for(client of clients){
-            if (client.id === id) {user = client;break;}
-        }
-        if(user != ""){
-            resolve(user);
-        }
-        else{
-            reject("Client with the id "+ id +"doesn't exist" );
-        }
-    });
+//     return new Promise ((resolve,reject) =>{
+//         let user ="";
+//         for(client of clients){
+//             if (client.id === id) {user = client;break;}
+//         }
+//         if(user != ""){
+//             resolve(user);
+//         }
+//         else{
+//             reject("Client with the id "+ id +"doesn't exist" );
+//         }
+//     });
+// }
+
+// function getProduct(id){
+
+//     return new Promise((resolve,reject) =>{
+//         let user ="";
+//         for(product of products){
+//             if (product.id === id) {user = product;break;}
+//         }
+//         if(user != ""){
+//             resolve(user);
+//         }
+//         else{
+//             reject("Product with the id "+ id +"doesn't exist" );
+//         }
+//     });
+    
+// }
+
+// function calculeTotalBill(products){
+//     let totsum = 0;
+//     let promises = []
+//     for(productId of products){
+//         promises.push(
+//             getProduct(productId)
+//             .then(value =>{totsum += value.price;})
+//         );
+//     }
+//     return Promise.all(promises).then(()=>totsum).catch(error => console.error(error));
+// }
+
+// function getInfoBill(billId){
+//     return new Promise((resolve,reject) =>{
+//         let information = {};
+//         for(bill of bills){
+//             if(bill.id === billId){
+//                 Promise.all([
+//                     getClient(bill.clientId),
+//                     calculeTotalBill(bill.products)
+//                 ])
+//                 .then(([client,total]) => {
+//                     bill.total = total;
+//                     information ={
+//                         bill,
+//                         client,
+//                         products: bill.products
+//                     };
+//                     console.log("information in promise", information);
+//                     resolve(information);
+//                 })
+//                 .catch(reject);
+//                 break;
+//             }
+//         }
+//     });
+// }
+// method 3 async and await
+
+async function getClient(id){
+    let user ="";
+    for(client of clients){
+        if (client.id === id) {user = client;break;}
+    }
+    if(user != ""){
+        return user;
+    }
+    else{
+        throw new Error("Client with the id "+ id +"doesn't exist" );
+    }
 }
 
-function getProduct(id){
-
-    return new Promise((resolve,reject) =>{
+async function getProduct(id){
         let user ="";
         for(product of products){
             if (product.id === id) {user = product;break;}
         }
         if(user != ""){
-            resolve(user);
+            return user;
         }
         else{
-            reject("Product with the id "+ id +"doesn't exist" );
+            throw new Error("Product with the id "+ id +"doesn't exist" );
         }
-    });
-    
 }
 
-function calculeTotalBill(products){
+async function calculeTotalBill(products){
     let totsum = 0;
-
-    // return new Promise((resolve,reject) =>{
-        for(productId of products){
-            getProduct(productId)
-            .then(value =>{totsum += value.price});
-            console.log(totsum);
-            // if(products.indexOf(productId) === products.length -1 ){
-            //     console.log(totsum)
-            //     return totsum;
-            // }
-            // getProduct(productId,(error,product) =>{
-            //     if(error){
-            //         reject(error);
-            //     }
-            //     else{
-            //         totsum += product.price;
-            //         if(products.indexOf(productId) === products.length -1 ){
-            //             console.log(totsum)
-            //             resolve(totsum);
-            //         }
-            //     }
-            // });
-        }
-        return totsum;
-    // });
-
+    for(productId of products){
+        let product = await getProduct(productId);
+        totsum += product.price;
+    }
+    return totsum;
 }
 
-function getInfoBill(billId){
-    // console.log("infobill start");
-    return new Promise((resolve,reject) =>{
-        let information = {}
+async function getInfoBill(billId){
+        let information = {};
         for(bill of bills){
             if(bill.id === billId){
-                console.log(bill.id);
-                getClient(bill.clientId)
-                .then(client =>{return calculeTotalBill(bill.products)})
-                .then(total => {
-                    // console.log("infobill total");
+                const client = await getClient(bill.clientId);
+                const total = await calculeTotalBill(bill.products)
+                try{
                     bill.total = total;
-                    information = {
+                    information ={
                         bill,
                         client,
                         products: bill.products
-                    }
-                    console.log(information);                    
-                })
-                .catch(reject);
-                // getClient(bill.clientId,(errorClient,client) =>{
-                //     if(errorClient){
-                //         callback(errorClient);
-                //     }
-                //     else{
-                //         calculeTotalBill(bill.products, (errorTotal,total)=>{
-                //             if(errorTotal){
-                //                 callback(errorTotal);
-                //             }
-                //             else{
-                //                 bill.total = total;
-                //                 information = {
-                //                     bill,
-                //                     client,
-                //                     products: bill.products
-                //                 }
-                                
-                //             }
-                //         });
-                //     }
-                // });
+                    };
+                    return information;
+                } catch(error){throw error};
             }
         }
-        if(information != {}){
-            resolve(information);
-        }
-        else{
-            reject("The bill with the id " + billId + "doesn't exist");
-        }
-    });
-    
-
 }
 
 // exercise 
@@ -260,7 +269,7 @@ const billId = 1001;
 //         console.log("Total amount of the bill: $" + infoBill.bill.total);
 //     }
 // })
-//method 2 promises
+//method 2 promises and method 3 async and await
 getInfoBill(billId)
     .then(infoBill =>{
         console.log("Information of the bill:");
@@ -271,3 +280,4 @@ getInfoBill(billId)
     .catch(error =>{
         console.error("Error to get the information of the bill: ", error);
     });
+
